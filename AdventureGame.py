@@ -1,9 +1,52 @@
 import random
 import time
+import cmd
+import sys
+import os
+
+
+
 name = (input("Before we begin, please enter your name: "))
 
+# Player Class
+class player:
+    def __init__(self):
+        self.name = ''
+        self.health = 100
+        self.magic = 50
+        self._status_effects = []
 
-# Functions
+thePlayer = player()
+
+# Menu Screen Selection
+def menu_screen_options():
+    selection = input("> ")
+    if selection.lower() == ("play"):
+        start_game() # place holder until ready
+    elif selection.lower() == ("exit"):
+        sys.exit()
+    while selection.lower() not in ['play', 'quit']:
+        print("Please enter a valid argument")
+        selection = input("> ")
+        if selection.lower() == ("play"):
+            start_game()  # place holder until ready
+        elif selection.lower() == ("exit"):
+            sys.exit()
+
+def start_game():
+
+# Menu Screen
+def menu_screen():
+    os.system('clear')
+    print('#####################')
+    print('Adventures in Lebedyn')
+    print('#####################')
+    print('      - Play -       ')
+    print('      - Exit -       ')
+    menu_screen_options()   # this returns the player to the title screen after their selection
+
+
+# Weapon Selection
 def WepSelection():
     weapon_options = ["1", "2", "3"]
     y = ""
@@ -12,9 +55,10 @@ def WepSelection():
 
             1) Sword
             2) Spear
+            3) Axe
             """.format(name))
 
-        y = input("Please pick a weapon by entering the corresponding number(1, 2 or 3): ")
+        y = input("Please pick a weapon by entering the corresponding number(1, 2, or 3): ")
 
     if y == weapon_options[0]:
         y = "sword"
@@ -25,7 +69,7 @@ def WepSelection():
         return y
 
     elif y == weapon_options[2]:
-        y = "bow_arrow"
+        y = "axe"
         return y
 
 

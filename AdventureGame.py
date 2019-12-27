@@ -18,7 +18,7 @@ class player:
 
 thePlayer = player()
 
-# Menu Screen Selection
+### Menu Screen Selection
 def menu_screen_options():
     selection = input("> ")
     if selection.lower() == ("play"):
@@ -34,8 +34,8 @@ def menu_screen_options():
             sys.exit()
 
 def start_game():
-
-# Menu Screen
+    return
+### Menu Screen
 def menu_screen():
     os.system('clear')
     print('#####################')
@@ -45,8 +45,19 @@ def menu_screen():
     print('      - Exit -       ')
     menu_screen_options()   # this returns the player to the title screen after their selection
 
+### Game Controls
 
-# Weapon Selection
+def user_prompt():
+    print("\n + =========")
+    print("What would you like to do?")
+    action = input("> ")
+    acceptable_actions = ["buy", "attack", "defend", "look", "read", "rest", "interact"]
+    while action.lower().strip() not in acceptable_actions:
+        print("You need to pick a new options, please try again.\n")
+        action = input("> ")
+
+
+### Weapon Selection
 def WepSelection():
     weapon_options = ["1", "2", "3"]
     y = ""
@@ -75,6 +86,8 @@ def WepSelection():
 
 weapon_selected = WepSelection()
 
+### Game Intro
+
 def Intro():
     path_options = ["1", "2", "3"]
     x = ""
@@ -95,6 +108,7 @@ def Intro():
     elif x == path_options[2]:
         path3()
 
+### Game Paths
 
 def path1():
     print("You have chosen the shortest path. You start walking but after a few hours the shadows start getting longer")
@@ -140,13 +154,6 @@ def path1():
                 troll.attack_by_enemy(you)
                 print("The troll attacks you and now you have {} health".format(you.health))
                 you.attack_enemy(troll)
-
-
-
-
-
-
-
 
 
 def path2():

@@ -57,29 +57,33 @@ def user_prompt():
         action = input("> ")
 
 
+
 ### Weapon Selection
 def WepSelection():
     weapon_options = ["1", "2", "3"]
-    y = ""
-    while y not in weapon_options:
-        print("""Welcome, {}. Before you begin your journey, please choose from one of the following three weapons:
+    print("\n + =========")
+    print("""Welcome, {}. Before you begin your journey, please choose from one of the following three weapons:
 
-            1) Sword
-            2) Spear
-            3) Axe
-            """.format(name))
+                1) Sword
+                2) Spear
+                3) Axe
+                """.format(name))
+    action = input("> ")
+    while action.lower().strip() not in weapon_options:
+        print("Please make an appropriate selection: 1, 2, or 3")
+        action = input("> ")
 
-        y = input("Please pick a weapon by entering the corresponding number(1, 2, or 3): ")
 
-    if y == weapon_options[0]:
+
+    if action == weapon_options[0]:
         y = "sword"
         return y
 
-    elif y == weapon_options[1]:
+    elif action == weapon_options[1]:
         y = "spear"
         return y
 
-    elif y == weapon_options[2]:
+    elif action == weapon_options[2]:
         y = "axe"
         return y
 
@@ -214,10 +218,11 @@ def buy_health(person):
 
 class Character:
 
-    def __init__(self, name, health):
+    def __init__(self):
         self.name = name
-        self.health = health
+        self.health = 100
         self.gold = 100
+        self.magic_points = 100
         self.weapon = weapon_selected
 
 

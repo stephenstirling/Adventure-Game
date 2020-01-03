@@ -1,10 +1,7 @@
-import random
-import time
-import cmd
-import sys
 import os
-
-
+import random
+import sys
+import time
 
 name = (input("Before we begin, please enter your name: "))
 
@@ -56,7 +53,17 @@ def user_prompt():
         print("You need to pick a new options, please try again.\n")
         action = input("> ")
 
-
+## Game Fuctions
+def escape():
+    print("To successfully escape, you need to guess the number of the die properly!\n")
+    actual_num = random.randint(1, 7)
+    guess = int(input("Take a guess: "))
+    if guess == actual_num:
+        print("You are right!\n")
+        print("You have escaped successfully!\n")
+    else:
+        print("You are wrong! Now you must prepare for battle!\n")
+  ### 01/02 I need to figure out how to exit from the if statement if successful, and return to the battle
 
 ### Weapon Selection
 def WepSelection():
@@ -72,8 +79,6 @@ def WepSelection():
     while action.lower().strip() not in weapon_options:
         print("Please make an appropriate selection: 1, 2, or 3")
         action = input("> ")
-
-
 
     if action == weapon_options[0]:
         y = "sword"
@@ -96,7 +101,7 @@ def Intro():
     path_options = ["1", "2", "3"]
     x = ""
     while x not in path_options:
-        print("""Thank you for picking. You are about to begin a very long journey. Ahead of you lies three paths:
+        print("""You are about to begin a very long journey. Ahead of you lie three paths:
 
           1) The shortest path. This path has the most amount of monsters
           2) The medium path. This path has an average amount of monsters.
@@ -121,17 +126,31 @@ def path1():
     guess = int(input("Take a guess: "))
     actual_num = random.randint(1, 7)
     if guess != actual_num:
-        while goblin.health >= 0 or you.health >= 0:
-            print("Suddenly a wild goblin appears!")
-            goblin.attack_by_enemy(you)
-            print("The goblin attacks you and now you have {} health".format(you.health))
-            you.attack_enemy(goblin)
-        else:
-            if goblin.health <= 0:
-                print("You have defeated the goblin and as a reward get 5 gold.")
-                you.gold += 5
-            elif you.health <= 0:
-                print("You have been defeated! This is the end of the game")
+        #while goblin.health >= 0 or you.health >= 0:
+        print("Suddenly a wild goblin appears!")
+        time.sleep(1)
+        print("The goblin prepares to swing his axe at you!\n")
+        print("Would you like to try to block the attack or escape?")
+        choices = ["block", "escape"]
+        choice = input("> ")
+        while choice.lower().strip() not in choices:
+            print("You need to pick a new options, please try again.\n")
+            action = input("> ")
+            if choice.lower().strip() == "escape":
+                escape()
+            else:
+
+
+
+        goblin.attack_by_enemy(you)
+        print("The goblin attacks you and now you have {} health".format(you.health))
+        you.attack_enemy(goblin)
+    else:
+        if goblin.health <= 0:
+            print("You have defeated the goblin and as a reward get 5 gold.")
+            you.gold += 5
+        elif you.health <= 0:
+            print("You have been defeated! This is the end of the game")
 
     time.sleep(1)
     print("You continue on traveling for a while until you reach a clearing.")
